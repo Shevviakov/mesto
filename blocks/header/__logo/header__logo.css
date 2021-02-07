@@ -2,7 +2,6 @@
     display: block;
     width: 142px;
     height: 33px;
-    margin-left: max(0px, calc((934px - 100vw)/2));
     background-image: url("../../../images/logo.svg");
     background-repeat: no-repeat;
     background-position: center;
