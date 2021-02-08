@@ -1,4 +1,5 @@
 .footer {
+  width: 880px;
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
@@ -9,7 +10,14 @@
 
 @media screen and (max-width: 918px) {
   .footer {
+    width: 581px;
     font-size: 14px;
     line-height: 17px;
+  }
+}
+
+@media screen and (max-width: 619px) {
+  .footer {
+    width: 282px;
   }
 }
