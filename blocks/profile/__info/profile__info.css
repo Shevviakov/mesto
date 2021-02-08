@@ -1,7 +1,7 @@
 .profile__info {
   margin: 0 30px;
   display: grid;
-  row-gap: 16px;
+  row-gap: 8px;
   column-gap: 18px;
   box-sizing: border-box;
   grid-template-columns: 1fr 24px;
@@ -11,7 +11,7 @@
 @media screen and (max-width: 918px) {
   .profile__info {
     margin: 0 20px;
-    row-gap: 14px;
+    row-gap: 7px;
     column-gap: 10px;
   }
 }
@@ -20,7 +20,7 @@
   .profile__info {
     text-align: center;
     margin: 26px 0 0;
-    padding-left: 28px;
+    padding-left: 30px;
     max-width: 282px;
   }
 }
