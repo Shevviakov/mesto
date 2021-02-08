@@ -15,17 +15,20 @@ function formSubmitHandler (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileBio.textContent = bioInput.value;
+    closePopup();
 }
-formElement.addEventListener('submit', formSubmitHandler);
 
 function closePopup () {
   popup.classList.remove("popup_opened");
 }
-closePopupButton.addEventListener("click", closePopup);
 
 function openPopup () {
   nameInput.value = profileName.textContent;
   bioInput.value = profileBio.textContent;
   popup.classList.add("popup_opened");
 }
+
+
+formElement.addEventListener('submit', formSubmitHandler);
+closePopupButton.addEventListener("click", closePopup);
 editProfileButton.addEventListener("click", openPopup);
