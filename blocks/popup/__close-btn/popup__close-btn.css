@@ -13,6 +13,7 @@
   background-size: contain;
   transition: opacity 0.1s linear;
   cursor: pointer;
+  outline: 0;
 }
 
 .popup__close-btn:hover {
