@@ -17,6 +17,7 @@
   text-align: center;
   cursor: pointer;
   transition: opacity 0.1s linear;
+  outline: 0;
 }
 
 .popup__save-btn:hover {
