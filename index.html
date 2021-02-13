@@ -21,62 +21,53 @@
       <button class="profile__add-card-btn" type="button" aria-label="Кнопка добавления новой карточки"></button>
     </section>
     <section class="cards page__cards" aria-label="Карточки мест">
-      <article class="card">
-        <img src="./images/card-karachaevsk.jpg" alt="Старая кирпичная церковь на горе" class="card__image">
-        <div class="card__content">
-          <h2 class="card__title">Карачаевск</h2>
-          <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/card-elbrus.jpg" alt="Гора Эльбрус в далеке на фоне закатного неба" class="card__image">
-        <div class="card__content">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/card-dombay.jpg" alt="На переднем плане осенний лес. Вдали скалистая гора на фоне пасмурного неба" class="card__image">
-        <div class="card__content">
-          <h2 class="card__title">Домбай</h2>
-          <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/card-elbrus.jpg" alt="Гора Эльбрус в далеке на фоне закатного неба" class="card__image">
-        <div class="card__content">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/card-dombay.jpg" alt="На переднем плане осенний лес. Вдали скалистая гора на фоне пасмурного неба" class="card__image">
-        <div class="card__content">
-          <h2 class="card__title">Домбай</h2>
-          <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/card-karachaevsk.jpg" alt="Старая кирпичная церковь на горе" class="card__image">
-        <div class="card__content">
-          <h2 class="card__title">Карачаево-Черкессия</h2>
-          <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
-        </div>
-      </article>
     </section>
     <article class="popup">
-      <form class="popup__container" name="edit-profile-form">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input" type="text" name="fullname" id="fullname">
-        <input class="popup__input" type="text" name="bio" id="bio">
-        <button class="popup__save-btn" type="submit">Сохранить</button>
+      <div class="popup__container">
+        <form class="popup-form" id="edit-profile-form" name="edit-profile-form">
+          <h2 class="popup-form__title">Редактировать профиль</h2>
+          <input class="popup-form__input" type="text" name="fullname" id="fullname">
+          <input class="popup-form__input" type="text" name="bio" id="bio">
+          <button class="popup-form__save-btn" type="submit">Сохранить</button>
+        </form>
         <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия формы редактирования профиля"></button>
-      </form>
+      </div>
+    </article>
+    <article class="popup">
+      <div class="popup__container">
+        <form class="popup-form" id="add-place-form" name="add-place-form">
+          <h2 class="popup-form__title">Новое место</h2>
+          <input class="popup-form__input" type="text" name="placename" id="placename" placeholder="Название">
+          <input class="popup-form__input" type="text" name="img-url" id="img-url" placeholder="Ссылка на картинку">
+          <button class="popup-form__save-btn" type="submit">Создать</button>
+        </form>
+       <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия формы добавления карточки места"></button>
+      </div>
+    </article>
+    <article class="popup popup__image-popup">
+      <div class="popup__container">
+        <figure class="image-popup">
+          <img class="image-popup__image" src="" alt="">
+          <figcaption class="image-popup__title"></figcaption>
+        </figure>
+        <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия прсмотра изображения"></button>
+      </div>
     </article>
   </main>
   <footer class="footer page__footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
+  <template id="card-template">
+    <article class="card">
+      <div class="card__image">
+        <button class="card__delete-btn" type="button" aria-label="Кнопка удаления карточки"></button>
+      </div>
+      <div class="card__content">
+        <h2 class="card__title"></h2>
+        <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
+      </div>
+    </article>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
