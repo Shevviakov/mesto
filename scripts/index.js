@@ -127,7 +127,7 @@ function createCard (imgSrc, imgTitle) {
 }
 
 function addCard (imgSrc, imgTitle) {
-  cardElem = createCard(imgSrc, imgTitle);
+  const cardElem = createCard(imgSrc, imgTitle);
   cardsElem.prepend(cardElem);
 }
 
