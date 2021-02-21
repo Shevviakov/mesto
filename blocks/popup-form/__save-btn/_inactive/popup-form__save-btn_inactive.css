@@ -1,0 +1,13 @@
+.popup-form__save-btn_inactive {
+  border: 1px solid #000;
+  color: #000;
+  background-color: transparent;
+  opacity: 0.2;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+}
+
+.popup-form__save-btn_inactive:hover {
+  opacity: 0.2;
+}
