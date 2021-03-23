@@ -44,7 +44,6 @@ export default class FormValidator {
   }
 
   _checkValidityInput(inputElement) {
-    const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`)
     if (inputElement.validity.valid) {
       this._hideInputError(inputElement);
     } else {

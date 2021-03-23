@@ -37,7 +37,7 @@ function openEditProfilePopup (validator) {
   bioInput.value = profileBioElem.textContent;
 
   const inputList = Array.from(formEditProfile.querySelectorAll(validationConfig.inputSelector));
-  const buttonElement = formEditProfile.querySelector('.popup-form__save-btn');
+  const buttonElement = formEditProfile.querySelector(validationConfig.submitButtonSelector);
   validator.toggleButtonState(inputList, buttonElement);
 
   openPopup(popupEditProfileElem);

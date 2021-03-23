@@ -1,4 +1,4 @@
-import {showImagePopup} from './utils.js';
+import {openPopup} from './utils.js';
 
 export default class Card {
   constructor(selector, cardObject) {
@@ -22,7 +22,7 @@ export default class Card {
 
   _getTemplate() {
     return document
-      .querySelector('.card-template')
+      .querySelector(this._selector)
       .content
       .querySelector('.card')
       .cloneNode(true);
@@ -37,7 +37,7 @@ export default class Card {
 
     this._element.querySelector('.card__image')
       .addEventListener('click', evt => {
-        showImagePopup(this._getCardObject())
+        this.showImagePopup()
       });
   }
 
@@ -50,7 +50,13 @@ export default class Card {
     this._element.closest('.card').remove();
   }
 
-  _getCardObject() {
-    return {name: this._name, link: this._link};
+  showImagePopup () {
+    const popupElement = document.querySelector('.popup_type_image-popup');
+    const popupImgElement = popupElement.querySelector('.image-popup__image');
+    const popupTitleElement = popupElement.querySelector('.image-popup__title');
+    popupImgElement.src = this._link;
+    popupImgElement.alt = this._name;
+    popupTitleElement.textContent = this._name;
+    openPopup(popupElement);
   }
 }
