@@ -9,10 +9,6 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._formElement.addEventListener('submit', evt => {
-      evt.preventDefault();
-    });
-
     this._setInputEventListeners();
   }
 
@@ -66,7 +62,6 @@ export default class FormValidator {
   }
 
   resetFormValidity() {
-    this._formElement.reset();
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     inputList.forEach(inputElement => {
       this._hideInputError(inputElement);
