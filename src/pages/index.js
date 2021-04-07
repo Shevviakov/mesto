@@ -1,12 +1,12 @@
-import '../pages/index.css';
+import './index.css';
 
-import Card from './Card.js';
-import Section from './Section.js';
-import FormValidator from './FormValidator.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-import {initialCards} from './initial-cards.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import {initialCards} from '../utils/initial-cards.js';
 
 const validationConfig = {
   inputSelector: '.popup-form__input',
@@ -40,19 +40,18 @@ editProfileButton.addEventListener('click', () => {
   profilePopup.open();
 });
 
+function createCard(cardObject) {
+  const card = new Card(
+    '.card-template',
+    cardObject,
+    () => imagePopup.open(cardObject)
+  );
+  return card.generateCard();
+}
 
 const createCardPopup = new PopupWithForm(
   '.popup_type_add-card',
-  ({placename, link}) => {
-    const cardObject = {name: placename, link: link};
-    console.log(cardObject);
-    const card = new Card(
-      '.card-template',
-      cardObject,
-      () => imagePopup.open(cardObject)
-    );
-    cardsList.addItem(card.generateCard());
-  }
+  ({placename, link}) => cardsList.addItem(createCard({name: placename, link: link}))
 );
 createCardPopup.setEventListeners();
 
@@ -71,14 +70,7 @@ imagePopup.setEventListeners();
 const cardsList = new Section(
   {
     items: initialCards,
-    renderer: (cardItem) => {
-      const card = new Card(
-        '.card-template',
-        cardItem,
-        () => imagePopup.open(cardItem)
-      );
-      cardsList.addItem(card.generateCard());
-    }
+    renderer: (cardItem) => cardsList.addItem(createCard(cardItem))
   },
   '.cards'
 );
