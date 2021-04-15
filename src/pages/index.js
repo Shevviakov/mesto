@@ -72,6 +72,7 @@ const profilePopup = new PopupWithForm(
       .catch(res => {
         console.log(`Error '${res.status} ${res.statusText}' ${res.url}`);
       })
+      .finally(() => profilePopup.setPending(false));
   }
 );
 profilePopup.setEventListeners();
@@ -151,6 +152,7 @@ const createCardPopup = new PopupWithForm(
       .catch(res => {
         console.log(`Error '${res.status} ${res.statusText}' ${res.url}`);
       })
+      .finally(() => createCardPopup.setPending(false));
   }
 );
 createCardPopup.setEventListeners();
@@ -167,9 +169,9 @@ addCardButton.addEventListener('click', () => {
 
 const editAvatarPopup = new PopupWithForm(
   '.popup_type_edit-avatar',
-  ({avatar_url}) => {
+  ({avatar}) => {
     editAvatarPopup.setPending(true);
-    api.setAvatar(avatar_url)
+    api.setAvatar(avatar)
       .then(userData => {
         userInfo.setAvatar(userData);
         editAvatarPopup.close();
@@ -177,6 +179,7 @@ const editAvatarPopup = new PopupWithForm(
       .catch(res => {
         console.log(`Error '${res.status} ${res.statusText}' ${res.url}`);
       })
+      .finally(() => editAvatarPopup.setPending(false));
   }
 );
 editAvatarPopup.setEventListeners();
