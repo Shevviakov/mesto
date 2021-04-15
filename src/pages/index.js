@@ -64,6 +64,21 @@ addCardButton.addEventListener('click', () => {
   createCardPopup.open()
 });
 
+const editAvatarPopup = new PopupWithForm(
+  '.popup_type_edit-avatar',
+  ({avatar_url}) => {console.log(avatar_url)}
+);
+editAvatarPopup.setEventListeners();
+
+const editAvatarValidator = new FormValidator(editAvatarPopup.formElement, validationConfig);
+editAvatarValidator.enableValidation();
+
+const editAvatarButton = document.querySelector('.profile__avatar-btn');
+editAvatarButton.addEventListener('click', () => {
+  editAvatarValidator.resetFormValidity();
+  editAvatarPopup.open();
+});
+
 const imagePopup = new PopupWithImage('.popup_type_image-popup');
 imagePopup.setEventListeners();
 

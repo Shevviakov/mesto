@@ -11,7 +11,7 @@
   </header>
   <main class="content">
     <section class="profile page__profile">
-      <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фотография Жака-Ива Кусто">
+      <button class="profile__avatar-btn" aria-label="Кнопка обновления аватара"></button>
       <div class="profile__info">
         <h1 class="profile__fullname">Жак-Ив Кусто</h1>
         <button class="profile__edit-btn" type="button" aria-label="Кнопка редактирования профиля"></button>
@@ -55,6 +55,28 @@
        <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия формы добавления карточки места"></button>
       </div>
     </article>
+    <article class="popup popup_type_edit-avatar">
+      <div class="popup__container">
+        <form class="popup-form" id="edit-avatar-form" name="edit-avatar-form" novalidate>
+          <h2 class="popup-form__title">Обновить аватар</h2>
+          <div class="popup-form__field">
+            <input class="popup-form__input" type="url" name="avatar_url" id="avatar_url" placeholder="Ссылка на картинку" required>
+            <span class="popup-form__input-error avatar_url-error"></span>
+          </div>
+          <button class="popup-form__save-btn" type="submit">Сохранить</button>
+        </form>
+       <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия формы добавления карточки места"></button>
+      </div>
+    </article>
+    <article class="popup popup_type_card-delete-confirmation">
+      <div class="popup__container">
+        <form class="popup-form" id="card-delete-confirmation-form" name="card-delete-confirmation-form" novalidate>
+          <h2 class="popup-form__title">Вы уверены?</h2>
+          <button class="popup-form__save-btn" type="submit">Да</button>
+        </form>
+        <button class="popup__close-btn" type="button" aria-label="Кнопка закрытия формы редактирования профиля"></button>
+      </div>
+    </article>
     <article class="popup popup_type_image-popup" aria-label="Просмотр карточки">
       <div class="popup__container">
         <figure class="image-popup">
@@ -73,7 +95,10 @@
       <img class="card__image" src="#" alt="Подпись картинки">
       <div class="card__content">
         <h2 class="card__title"></h2>
-        <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
+        <div class="card__like-group">
+          <button class="card__like-btn" type="button" aria-label="Кнопка лайка карточки"></button>
+          <p class="card__like-counter">6</p>
+        </div>
       </div>
       <button class="card__delete-btn" type="button" aria-label="Кнопка удаления карточки"></button>
     </article>
