@@ -1,99 +1,62 @@
 export default class Api {
-  constructor({cohortId, token}) {
-    this._cohortId = cohortId;
-    this._token = token;
+  constructor({baseUrl, headers}) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
+  }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(res);
   }
 
   getInitialCards() {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohortId}/cards`, {
-      headers: {
-        'authorization': `${this._token}`,
-      }
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
     })
-      .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res);
-    });
+      .then(this._checkResponse);
   }
 
   addNewCard(cardInfo) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohortId}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: {
-        'authorization': `${this._token}`,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify(cardInfo)
     })
-      .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res);
-    });
+      .then(this._checkResponse);
   }
 
   deleteCard(cardId) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohortId}/cards/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: {
-        'authorization': `${this._token}`,
-      },
+      headers: this._headers,
     })
-      .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res);
-    });
+      .then(this._checkResponse);
   }
 
   getUserInfo() {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohortId}/users/me`, {
-      headers: {
-        'authorization': `${this._token}`,
-      }
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers
     })
-      .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res);
-    });
+      .then(this._checkResponse);
   }
 
   setUserInfo(userInfo) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohortId}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: {
-        'authorization': `${this._token}`,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify(userInfo)
     })
-      .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res);
-    });
+      .then(this._checkResponse);
   }
 
   _like(method, cardId) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohortId}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: method,
-      headers: {
-        'authorization': `${this._token}`,
-      }
+      headers: this._headers
     })
-      .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res);
-    });
+      .then(this._checkResponse);
   }
 
   addLike(cardId) {
@@ -105,19 +68,11 @@ export default class Api {
   }
 
   setAvatar(avatar) {
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohortId}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        'authorization': `${this._token}`,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({avatar: avatar})
     })
-      .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(res);
-    });
+      .then(this._checkResponse);
   }
 }
