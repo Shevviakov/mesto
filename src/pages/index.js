@@ -8,6 +8,8 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
+import {auth, validationConfig} from '../utils/constants.js';
+
 function checkIsLiked(cardObject, userData) {
   return cardObject.likes.some(like => like._id === userData._id);
 }
@@ -15,14 +17,6 @@ function checkIsLiked(cardObject, userData) {
 function checkIsDeletable(cardObject, userData) {
   return cardObject.owner._id === userData._id;
 }
-
-const validationConfig = {
-  inputSelector: '.popup-form__input',
-  submitButtonSelector: '.popup-form__save-btn',
-  inactiveButtonClass: 'popup-form__save-btn_inactive',
-  inputErrorClass: 'popup-form__input_type_error',
-  errorClass: 'popup-form__input-error_active'
-};
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__fullname',
@@ -33,8 +27,11 @@ const userInfo = new UserInfo({
 const cardsList = new Section('.cards', (cardItem) => cardsList.appendItem(createCard(cardItem)));
 
 const api = new Api({
-  cohortId: 'cohort-22',
-  token: '946aaeba-7448-46be-96a2-9a2018d54afe'
+  baseUrl: `https://mesto.nomoreparties.co/v1/${auth.cohortId}`,
+  headers: {
+    authorization: auth.token,
+    'Content-Type': 'application/json'
+  }
 })
 
 let userData; // global oobject for current user data
@@ -62,7 +59,7 @@ api.getUserInfo()
 const profilePopup = new PopupWithForm(
   '.popup_type_edit-profile',
   ({fullname: name, bio: about}) => {
-    const newInfo = {name: name, about: about}
+    const newInfo = {name, about}
     profilePopup.setPending(true);
     api.setUserInfo(newInfo)
       .then(newInfo => {
@@ -83,7 +80,7 @@ editProfileValidator.enableValidation();
 const editProfileButton = document.querySelector('.profile__edit-btn');
 editProfileButton.addEventListener('click', () => {
   const {name, bio} = userInfo.getUserInfo();
-  profilePopup.setInputValues({fullname: name, bio: bio});
+  profilePopup.setInputValues({fullname: name, bio});
   editProfileValidator.resetFormValidity();
   profilePopup.open();
 });
